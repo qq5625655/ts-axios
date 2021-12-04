@@ -75,7 +75,6 @@
   },
   "lint-staged": {
     "*.ts": [
-      "npm run build:check-ts",
       "npm run eslint",
       "npm run prettier"
     ]
