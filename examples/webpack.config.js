@@ -21,7 +21,7 @@ entryFiles.map((item, index) => {
             title: pageName,
             filename: `${pageName}.html`,
             template: path.join(__dirname, `${pageName}/index.html`),
-            // chunks: [pageName]
+            chunks: [pageName]
         })
     )
 })
