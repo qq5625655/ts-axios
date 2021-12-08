@@ -51,6 +51,8 @@ module.exports = {
     filename: "[name].js",
     // publicPath: "/build/"
   },
+  mode: 'development',
+  devtool: 'source-map',
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
   },
