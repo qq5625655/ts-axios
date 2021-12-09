@@ -42,6 +42,7 @@ export interface AxiosError extends Error {
 }
 
 export interface Axios {
+    // interceptors: {};
     request(config: AxiosRequestConfig): AxiosPromise;
 
     get(url: string, config?: AxiosRequestConfig): AxiosPromise;

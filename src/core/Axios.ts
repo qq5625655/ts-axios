@@ -3,6 +3,8 @@ import {
     AxiosRequestConfig,
     AxiosResponse,
     Method,
+    ResolvedFn,
+    RejectedFn,
 } from '../types';
 import dispatchRequest from './dispatchRequest';
 import InterceptorManager from './interceptorManager';
@@ -10,16 +12,17 @@ interface Interceptors {
     request: InterceptorManager<AxiosRequestConfig>;
     response: InterceptorManager<AxiosResponse>;
 }
+interface PromiseChain {
+    resolved: ResolvedFn | ((config: AxiosRequestConfig) => AxiosPromise);
+    rejected?: RejectedFn;
+}
+
 interface Axios {
     interceptors: Interceptors;
     new (): void;
 }
 const Axios = function (this: Axios) {
-    // do nothing  AxiosRequestConfig  <AxiosResponse<any>>
-    // interface Interceptors {
-    //     request: InterceptorManager<AxiosRequestConfig>,
-    //     response: InterceptorManager<AxiosResponse>,
-    // }
+    // do nothing
     // Interceptors
     this.interceptors = {
         request: new InterceptorManager<AxiosRequestConfig>(),
@@ -28,17 +31,37 @@ const Axios = function (this: Axios) {
 } as any as { new (): void };
 
 export default Axios;
-Axios.prototype.request = function (
-    url: any,
-    config: AxiosRequestConfig,
-): AxiosPromise {
+Axios.prototype.request = function (url: any, config: AxiosRequestConfig) {
     if (typeof url === 'string') {
         config = config ? config : {};
         config.url = url;
     } else {
         config = url;
     }
-    return dispatchRequest(config);
+    const chain: PromiseChain[] = [
+        {
+            resolved: dispatchRequest,
+            rejected: undefined,
+        },
+    ];
+
+    this.interceptors.request.forEach((interceptor: PromiseChain) => {
+        chain.unshift(interceptor);
+    });
+
+    this.interceptors.response.forEach((interceptor: PromiseChain) => {
+        chain.push(interceptor);
+    });
+
+    let promise = Promise.resolve(config);
+
+    while (chain.length) {
+        const { resolved, rejected } = chain.shift()!;
+        promise = promise.then(resolved, rejected);
+    }
+
+    return promise;
+    // return dispatchRequest(config);
 };
 Axios.prototype.get = function (
     url: string,
