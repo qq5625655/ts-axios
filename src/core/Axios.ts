@@ -1,11 +1,32 @@
-import { AxiosPromise, AxiosRequestConfig, Method } from '../types';
+import {
+    AxiosPromise,
+    AxiosRequestConfig,
+    AxiosResponse,
+    Method,
+} from '../types';
 import dispatchRequest from './dispatchRequest';
-// interface Axios {
-//   new ():void
-// }
-const Axios = function () {
-    // do nothing
+import InterceptorManager from './interceptorManager';
+interface Interceptors {
+    request: InterceptorManager<AxiosRequestConfig>;
+    response: InterceptorManager<AxiosResponse>;
+}
+interface Axios {
+    interceptors: Interceptors;
+    new (): void;
+}
+const Axios = function (this: Axios) {
+    // do nothing  AxiosRequestConfig  <AxiosResponse<any>>
+    // interface Interceptors {
+    //     request: InterceptorManager<AxiosRequestConfig>,
+    //     response: InterceptorManager<AxiosResponse>,
+    // }
+    // Interceptors
+    this.interceptors = {
+        request: new InterceptorManager<AxiosRequestConfig>(),
+        response: new InterceptorManager<AxiosResponse>(),
+    };
 } as any as { new (): void };
+
 export default Axios;
 Axios.prototype.request = function (
     url: any,
