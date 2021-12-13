@@ -8,6 +8,8 @@ import {
 } from '../types';
 import dispatchRequest from './dispatchRequest';
 import InterceptorManager from './interceptorManager';
+import mergeConfig from './mergeConfig';
+
 interface Interceptors {
     request: InterceptorManager<AxiosRequestConfig>;
     response: InterceptorManager<AxiosResponse>;
@@ -19,16 +21,18 @@ interface PromiseChain {
 
 interface Axios {
     interceptors: Interceptors;
-    new (): void;
+    defaults: AxiosRequestConfig;
+    // new (): void;
 }
-const Axios = function (this: Axios) {
+const Axios = function (this: Axios, initConfig: AxiosRequestConfig) {
     // do nothing
+    this.defaults = initConfig;
     // Interceptors
     this.interceptors = {
         request: new InterceptorManager<AxiosRequestConfig>(),
         response: new InterceptorManager<AxiosResponse>(),
     };
-} as any as { new (): void };
+} as any as { new (defaults: AxiosRequestConfig): void };
 
 export default Axios;
 Axios.prototype.request = function (url: any, config: AxiosRequestConfig) {
@@ -38,6 +42,8 @@ Axios.prototype.request = function (url: any, config: AxiosRequestConfig) {
     } else {
         config = url;
     }
+    config = mergeConfig(this.defaults, config);
+
     const chain: PromiseChain[] = [
         {
             resolved: dispatchRequest,
