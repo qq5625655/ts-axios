@@ -76,6 +76,10 @@ router.put('/api/expandInterface/put', function (req, res) {
 router.patch('/api/expandInterface/patch', function (req, res) {
     res.json(req.body);
 });
+// 10章
+router.post('/api/transformData', function (req, res) {
+    res.json(req.body);
+});
 app.use(router);
 
 const port = process.env.PORT || 3000;

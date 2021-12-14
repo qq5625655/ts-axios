@@ -23,6 +23,12 @@ export interface AxiosRequestConfig {
     responseType?: XMLHttpRequestResponseType;
     timeout?: number;
     [propName: string]: any;
+
+    transformRequest?: AxiosTransformer | AxiosTransformer[];
+    transformResponse?: AxiosTransformer | AxiosTransformer[];
+}
+export interface AxiosTransformer {
+    (data: any, headers?: any): any;
 }
 
 export interface AxiosResponse {
@@ -65,6 +71,7 @@ export interface Axios {
 export interface AxiosInstance extends Axios {
     (config: AxiosRequestConfig): AxiosPromise;
     (url: string, config?: AxiosRequestConfig): AxiosPromise;
+    create(config?: AxiosRequestConfig): AxiosInstance;
     defaults: any;
 }
 
