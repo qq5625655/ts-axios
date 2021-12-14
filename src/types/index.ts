@@ -37,6 +37,9 @@ export interface AxiosRequestConfig {
 
     onDownloadProgress?: (e: ProgressEvent) => void;
     onUploadProgress?: (e: ProgressEvent) => void;
+    paramsSerializer?: (params: any) => string;
+
+    baseURL?: string;
 }
 export interface AxiosTransformer {
     (data: any, headers?: any): any;
