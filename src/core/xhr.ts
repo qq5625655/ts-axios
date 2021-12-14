@@ -10,6 +10,7 @@ function axios(config: AxiosRequestConfig): AxiosPromise {
             headers,
             responseType,
             timeout,
+            cancelToken,
         } = config;
 
         const request = new XMLHttpRequest();
@@ -81,6 +82,12 @@ function axios(config: AxiosRequestConfig): AxiosPromise {
             }
         });
         request.send(data);
+        if (cancelToken) {
+            cancelToken.promise.then((reason) => {
+                request.abort();
+                reject(reason);
+            });
+        }
     });
 }
 
