@@ -31,6 +31,12 @@ export interface AxiosRequestConfig {
     withCredentials?: boolean;
     xsrfCookieName?: string;
     xsrfHeaderName?: string;
+    auth?: AxiosBasicCredentials;
+
+    validateStatus?: (status: number) => boolean;
+
+    onDownloadProgress?: (e: ProgressEvent) => void;
+    onUploadProgress?: (e: ProgressEvent) => void;
 }
 export interface AxiosTransformer {
     (data: any, headers?: any): any;
@@ -65,6 +71,12 @@ export interface Cancel {
 export interface CancelStatic {
     new (message?: string): Cancel;
 }
+
+export interface AxiosBasicCredentials {
+    username: string;
+    password: string;
+}
+
 export interface AxiosResponse {
     data: any;
     status: number;
