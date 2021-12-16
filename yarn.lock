@@ -1636,6 +1636,11 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
+"@types/jasmine-ajax@^3.3.3":
+  version "3.3.3"
+  resolved "https://registry.npmmirror.com/@types/jasmine-ajax/download/@types/jasmine-ajax-3.3.3.tgz?cache=0&sync_timestamp=1637265992721&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40types%2Fjasmine-ajax%2Fdownload%2F%40types%2Fjasmine-ajax-3.3.3.tgz#ec89515434d4aee9772e25a730bd626ecf44260d"
+  integrity sha1-7IlRVDTUrul3LiWnML1ibs9EJg0=
+
 "@types/jest@^27.0.3":
   version "27.0.3"
   resolved "https://npm.pri.ibanyu.com/@types%2fjest/-/jest-27.0.3.tgz#0cf9dfe9009e467f70a342f0f94ead19842a783a"
@@ -4541,6 +4546,16 @@ istanbul-reports@^3.0.2:
   dependencies:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
+
+jasmine-ajax@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npm.taobao.org/jasmine-ajax/download/jasmine-ajax-4.0.0.tgz#7d8ba7e47e3f7e780e155fe9aa563faafa7e1a26"
+  integrity sha1-fYun5H4/fngOFV/pqlY/qvp+GiY=
+
+jasmine-core@^3.10.1:
+  version "3.10.1"
+  resolved "https://registry.npmmirror.com/jasmine-core/download/jasmine-core-3.10.1.tgz?cache=0&sync_timestamp=1635604042289&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fjasmine-core%2Fdownload%2Fjasmine-core-3.10.1.tgz#7aa6fa2b834a522315c651a128d940eca553989a"
+  integrity sha1-eqb6K4NKUiMVxlGhKNlA7KVTmJo=
 
 jest-changed-files@^27.4.2:
   version "27.4.2"

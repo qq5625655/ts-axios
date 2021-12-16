@@ -1,7 +1,7 @@
 import { buildURL } from '../helpers/url';
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types';
-import { transformRequest, transformResponse } from '../helpers/data';
-import { processHeaders, flattenHeaders } from '../helpers/headers';
+// import { transformRequest } from '../helpers/data';
+import { flattenHeaders } from '../helpers/headers';
 import transform from './transform';
 import xhr from './xhr';
 import { combineURL, isAbsoluteURL } from '../helpers/util';
@@ -34,14 +34,14 @@ function transformUrl(config: AxiosRequestConfig): string {
     }
     return buildURL(url!, params, paramsSerializer);
 }
-function transformRequestData(config: AxiosRequestConfig): any {
-    return transformRequest(config.data);
-}
+// function transformRequestData(config: AxiosRequestConfig): any {
+//     return transformRequest(config.data);
+// }
 
-function transformHeaders(config: AxiosRequestConfig) {
-    const { headers = {}, data } = config;
-    return processHeaders(headers, data);
-}
+// function transformHeaders(config: AxiosRequestConfig) {
+//     const { headers = {}, data } = config;
+//     return processHeaders(headers, data);
+// }
 function transformResponseData(res: AxiosResponse): AxiosResponse {
     // res.data = transformResponse(res.data);
     // return res;
