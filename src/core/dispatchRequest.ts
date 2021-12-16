@@ -1,4 +1,4 @@
-import { builndUrl } from '../helpers/url';
+import { buildURL } from '../helpers/url';
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types';
 import { transformRequest, transformResponse } from '../helpers/data';
 import { processHeaders, flattenHeaders } from '../helpers/headers';
@@ -32,7 +32,7 @@ function transformUrl(config: AxiosRequestConfig): string {
     if (baseURL && !isAbsoluteURL(url!)) {
         url = combineURL(baseURL, url);
     }
-    return builndUrl(url!, params, paramsSerializer);
+    return buildURL(url!, params, paramsSerializer);
 }
 function transformRequestData(config: AxiosRequestConfig): any {
     return transformRequest(config.data);

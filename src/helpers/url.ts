@@ -26,9 +26,9 @@ function encode(val: string): string {
  * 以上这些情况都得处理
  * @param params
  */
-export function builndUrl(
+export function buildURL(
     url: string,
-    params: any,
+    params?: any,
     paramsSerializer?: (params: any) => string,
 ): string {
     if (!params) {

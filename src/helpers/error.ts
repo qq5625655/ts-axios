@@ -1,10 +1,11 @@
 import { AxiosRequestConfig, AxiosResponse } from '../types';
 
 export class AxiosError extends Error {
-    private config: AxiosRequestConfig;
-    private request?: any;
-    private code?: string | null | number;
-    private response?: AxiosResponse;
+    config: AxiosRequestConfig;
+    request?: any;
+    code?: string | null | number;
+    response?: AxiosResponse;
+    isAxiosError: boolean;
 
     constructor(
         message: string,
@@ -19,6 +20,7 @@ export class AxiosError extends Error {
         this.request = request;
         this.code = code;
         this.response = response;
+        this.isAxiosError = true;
 
         Object.setPrototypeOf(this, AxiosError.prototype);
     }
