@@ -42,8 +42,9 @@ Axios.prototype.request = function (url: any, config: AxiosRequestConfig) {
     } else {
         config = url;
     }
+    console.log('request---', config);
     config = mergeConfig(this.defaults, config);
-
+    console.log('---request', config);
     const chain: PromiseChain[] = [
         {
             resolved: dispatchRequest,

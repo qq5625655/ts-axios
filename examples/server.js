@@ -25,6 +25,12 @@ router.post('/api/handleRequestHeader/post', function (req, res) {
 router.post('/api/getResponse', function (req, res) {
     res.json(req.body);
 });
+
+router.post('/api/getResponse2', function (req, res) {
+    console.log('res', res.body);
+    res.json(req.body);
+});
+
 // 6handleError
 // 响应正常情况，有50%几率响应成功，有50%几率响应失败，返回状态码500
 router.get('/api/handleError', function (req, res) {

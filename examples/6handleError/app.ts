@@ -21,7 +21,7 @@ axios({
         console.log(res);
     })
     .catch((e) => {
-        console.log(e);
+        console.log('catch', e);
     });
 
 // 3. 模拟网络错误

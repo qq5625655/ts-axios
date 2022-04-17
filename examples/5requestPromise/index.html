@@ -7,6 +7,25 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <!-- <script src="./proxy.ts"></script> -->
+    <input type="file" id="11" onchange="handleFile()">
+    <script>
+        let input = document.getElementById('11');
+        const handleFile = ()=>{
+            console.log(input.files)
+            let form = new FormData();
+            form.append('file', input.files[0])
+            console.log(form.get('file'))
+            
+            // reader.readAsDataURL(input.files[0]);
+            // console.log(reader)
+            // reader.onload= ()=>{
+            //     console.log(reader.result)
+            // }
+        }
+        // input.addEventListener('click', (e)=>{
+            
+        // })
+    </script>
 </body>
 </html>
